@@ -1,0 +1,6 @@
+{
+  "aiEnabled": true,
+  "geminiApiKey": "",
+  "geminiModel": "gemini-2.5-flash",
+  "providerOrder": ["gemini", "pollinations"]
+}

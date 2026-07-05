@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:/Users/muham/Research/zara-portfolio", "run", "dev"],
+      "port": 5173
+    }
+  ]
+}

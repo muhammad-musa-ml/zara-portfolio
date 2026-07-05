@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "title": "Zara Ahmed — Software Engineer & Product Designer",
+    "description": "Zara Ahmed builds interfaces grounded in psychology and ships the code behind them. LUMS CS '26. Portfolio, projects, and an honest AI twin."
+  },
+  "hero": {
+    "greetings": ["Hello", "السلام علیکم", "Salut", "Hola", "Ciao"],
+    "name": "Zara Ahmed",
+    "roles": ["Software Engineer", "Product Designer", "UI/UX Engineer"],
+    "tagline": "I design with psychology. I ship with code.",
+    "sub": "LUMS CS '26 — building interfaces that respect how people actually think.",
+    "scrollCue": "Scroll to explore"
+  },
+  "chapters": [
+    { "id": "intro", "kicker": "00", "title": "Hello", "nav": "Intro" },
+    { "id": "foundations", "kicker": "01", "title": "Foundations", "nav": "Education" },
+    { "id": "work", "kicker": "02", "title": "The Work", "nav": "Projects" },
+    { "id": "lens", "kicker": "03", "title": "The Lens", "nav": "Philosophy" },
+    { "id": "toolkit", "kicker": "04", "title": "Toolkit", "nav": "Skills" },
+    { "id": "offscreen", "kicker": "05", "title": "Offscreen", "nav": "Beyond Work" },
+    { "id": "contact", "kicker": "06", "title": "Let's Talk", "nav": "Contact" }
+  ],
+  "timeline": [
+    { "year": "2022", "title": "First semester at LUMS", "body": "Started BS Computer Science, unsure whether I'd end up in engineering or design." },
+    { "year": "2023", "title": "First Dean's Honor List", "body": "Fall 2023. Also the semester I took Intro to Visual Design almost by accident." },
+    { "year": "2024", "title": "Software engineering internship", "body": "Joined Lumen Loop for the summer, building full-stack scheduling features for campus societies." },
+    { "year": "2024", "title": "Design Lead, LUMS Design Collective", "body": "Started running critique sessions and workshops for the campus design community." },
+    { "year": "2025", "title": "Product design internship", "body": "Joined Notch Studio, running user research and building a client design system." },
+    { "year": "2026", "title": "Graduated LUMS", "body": "Finished with a second Dean's Honor List and Sahulat, my capstone, already live with real users." }
+  ],
+  "projects": [
+    {
+      "slug": "rasta",
+      "title": "Rasta",
+      "category": "Full-stack · 2024",
+      "oneLiner": "An accessibility-first wayfinding app for the LUMS campus.",
+      "problem": "A visually impaired classmate couldn't use the existing campus map with a screen reader.",
+      "approach": "Built full keyboard navigation, ARIA-labeled route steps, high-contrast mode, and an audio building-description mode.",
+      "impact": [
+        "Used by roughly 80 students in its first semester",
+        "Full keyboard and screen-reader navigation across every route",
+        "Won 1st place, Accessibility Tech track, Indus Valley Hackathon"
+      ],
+      "stack": ["React", "Node.js", "Mapbox GL", "PostgreSQL"],
+      "lensNote": "Leaned on clear, consistent feedback cues so non-visual navigation never left a user guessing what happened."
+    },
+    {
+      "slug": "alfaaz",
+      "title": "Alfaaz",
+      "category": "ML / NLP · 2025",
+      "oneLiner": "An Urdu-language tool that summarizes long news articles into three sentences.",
+      "problem": "Most summarization tools handle English well and treat Urdu as an afterthought.",
+      "approach": "Fine-tuned a multilingual transformer model with custom Urdu preprocessing, served through a FastAPI backend.",
+      "impact": [
+        "72% agreement with human reference summaries",
+        "Tested on a self-built 50-article held-out set",
+        "Custom Urdu word-segmentation preprocessing pipeline"
+      ],
+      "stack": ["Python", "Hugging Face Transformers", "FastAPI", "Docker"],
+      "lensNote": "Kept summaries to exactly three sentences on purpose, respecting how much a reader will actually scan before moving on."
+    },
+    {
+      "slug": "marrow",
+      "title": "Marrow",
+      "category": "Design system · 2025",
+      "oneLiner": "A shared component library so I'd stop rebuilding the same button every semester.",
+      "problem": "Every new project meant rebuilding the same buttons, modals, and forms from scratch.",
+      "approach": "Built 25+ accessible React components with Storybook docs, a shared design-token system, and a synced Figma library.",
+      "impact": [
+        "25+ documented, accessible components",
+        "Used across 3 of my own other projects",
+        "One shared token system replacing inconsistent one-off styles"
+      ],
+      "stack": ["React", "TypeScript", "Storybook", "Figma"],
+      "lensNote": "Standardized interaction patterns using the Von Restorff effect deliberately, so the one button that matters on a screen still stands out."
+    },
+    {
+      "slug": "sahulat",
+      "title": "Sahulat",
+      "category": "Capstone · 2026",
+      "oneLiner": "A peer-tutoring marketplace connecting LUMS students, launched to real users before graduation.",
+      "problem": "Students needing help in a course had no easy way to find peers who'd already done well in it.",
+      "approach": "Designed and built a two-sided marketplace with scheduling, reviews, and Stripe-based session payments.",
+      "impact": [
+        "210 registered users, 340 completed sessions",
+        "4.6/5 average rating across 190 reviews",
+        "Launched to my own graduating cohort before I graduated"
+      ],
+      "stack": ["Next.js", "PostgreSQL", "Stripe", "Tailwind CSS"],
+      "lensNote": "Reduced the booking flow to the fewest possible taps, treating every extra screen as a chance to lose someone who was already unsure."
+    }
+  ],
+  "philosophy": {
+    "intro": "I don't separate design taste from engineering judgment. Every layout or flow decision I make traces back to a specific idea about attention, memory, or motivation. Naming the principle keeps me honest about whether it actually worked.",
+    "principles": [
+      { "name": "Hick's Law", "claim": "More choices on screen means slower decisions, so I cut options before I add polish.", "demoLabel": "Try it — find the button" },
+      { "name": "Fitts's Law", "claim": "The more often an action matters, the bigger and closer its target should be.", "demoLabel": "Try it — hit the target" },
+      { "name": "Von Restorff effect", "claim": "One item that looks different gets remembered; everything else should look calm.", "demoLabel": "Try it — what stood out?" }
+    ]
+  },
+  "skills": {
+    "groups": [
+      { "label": "Engineering", "items": ["React", "Next.js", "Node.js", "FastAPI", "PostgreSQL", "TypeScript", "Python", "REST API design"] },
+      { "label": "Design", "items": ["Figma", "User research", "Usability testing", "Wireframing & prototyping", "Design systems", "Interaction design principles", "Accessibility (ARIA)"] },
+      { "label": "Product & Data", "items": ["Product scoping", "Pandas", "Scikit-learn basics", "Hugging Face Transformers", "Analytics dashboards", "Stakeholder presentations"] }
+    ],
+    "note": "I go deep where a project demanded it, not evenly everywhere. Ask me what I haven't done — I'll tell you straight."
+  },
+  "offscreen": {
+    "intro": "The parts of the timeline that didn't make it into a project card.",
+    "facts": [
+      "I can recite most of Nielsen Norman Group's usability heuristics from memory.",
+      "I keep a running note of UI patterns that annoyed me that day, past 200 entries now.",
+      "I read music before I learned to code, and I still think in rhythm when I think about pacing.",
+      "My best debugging happens in the LUMS library reading room around 11pm.",
+      "I've never shipped a mobile app to an app store, and it bothers me more than it should.",
+      "I organized a 60-person campus workshop and was more nervous presenting it than defending my capstone."
+    ],
+    "values": [
+      { "name": "Specific over abstract", "body": "Every project started with one real person's real complaint." },
+      { "name": "Communicate early, then build", "body": "I over-align at the start so I can go quiet and just ship." },
+      { "name": "Name the principle", "body": "If I can't say why a decision helps, it's still a guess." }
+    ]
+  },
+  "contact": {
+    "headline": "Let's talk",
+    "body": "I'm available now, open to relocating, and open to remote or hybrid roles. Reach out and I'll get back to you directly.",
+    "email": "hello@zaraahmed.dev",
+    "links": [
+      { "label": "GitHub", "url": "#" },
+      { "label": "LinkedIn", "url": "#" },
+      { "label": "Dribbble", "url": "#" }
+    ],
+    "closing": "Thanks for scrolling this far. Say hello."
+  },
+  "chat": {
+    "title": "Zara's AI twin",
+    "subtitle": "Grounded in her real portfolio. Honest by design.",
+    "welcome": "Hi, I'm Zara's AI twin. Ask me about her projects, her stack, or her design process. I'll also tell you straight when something's outside what she's actually done.",
+    "chips": ["What's her strongest project?", "Is she more engineer or designer?", "Can she do quantum physics?", "How does she work in a team?", "Is she available to hire?"],
+    "disclaimer": "This AI may summarize loosely. Verify anything specific with the human Zara."
+  },
+  "footer": {
+    "line": "Designed & built from scratch — three.js, GSAP, and an unreasonable love of easing curves.",
+    "credit": "© 2026 Zara Ahmed"
+  },
+  "resume": {
+    "headline": "Zara Ahmed",
+    "subline": "Software Engineer · Product Designer",
+    "summary": "LUMS CS '26 graduate building interfaces grounded in psychology and shipping the full-stack code behind them.",
+    "sections": {
+      "education": {
+        "school": "LUMS — Syed Babar Ali School of Science and Engineering",
+        "degree": "BS Computer Science",
+        "dates": "2022–2026",
+        "honors": "Dean's Honor List (Fall 2023, Spring 2025)"
+      },
+      "experience": [
+        {
+          "company": "Lumen Loop",
+          "title": "Software Engineering Intern",
+          "dates": "Summer 2024",
+          "bullets": [
+            "Built a full-stack RSVP and attendance-tracking feature used by 14 campus societies",
+            "Cut event-listing page load time from 2.8s to 1.4s by batching API calls"
+          ]
+        },
+        {
+          "company": "Notch Studio",
+          "title": "Product Design Intern",
+          "dates": "Summer 2025",
+          "bullets": [
+            "Ran 9 user interviews and 2 usability rounds, cutting client onboarding drop-off by ~18%",
+            "Designed a 40-component design system in Figma, replacing three inconsistent UI patterns"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "Sahulat",
+          "bullets": [
+            "Peer-tutoring marketplace launched to my LUMS cohort with 210 users and 340 completed sessions",
+            "Built end-to-end with Next.js, PostgreSQL, and Stripe payments"
+          ]
+        },
+        {
+          "name": "Rasta",
+          "bullets": [
+            "Accessibility-first campus wayfinding app used by ~80 students in its first semester",
+            "Won 1st place, Accessibility Tech track, Indus Valley Hackathon"
+          ]
+        },
+        {
+          "name": "Alfaaz",
+          "bullets": [
+            "Urdu-language NLP summarizer reaching 72% agreement with human reference summaries",
+            "Fine-tuned a multilingual transformer model served via FastAPI"
+          ]
+        }
+      ],
+      "skills": {
+        "engineering": "React, Next.js, Node.js, FastAPI, PostgreSQL, TypeScript, Python",
+        "design": "Figma, user research, usability testing, design systems, accessibility",
+        "productData": "Pandas, Scikit-learn basics, Hugging Face Transformers, analytics dashboards"
+      },
+      "awards": [
+        "Dean's Honor List, Fall 2023 and Spring 2025",
+        "1st place, Indus Valley Hackathon (Accessibility Tech track), 2025"
+      ]
+    }
+  }
+}
