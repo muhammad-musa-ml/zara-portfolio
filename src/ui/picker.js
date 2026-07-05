@@ -9,8 +9,8 @@ export function initPicker({ currentBg, currentCursor, onBg, onCursor }) {
   root.innerHTML = `
     <button type="button" class="sl-tab">◧ style lab</button>
     <div class="sl-panel">
-      <div class="sl-head"><strong>style lab</strong><span>local only — never ships</span><button type="button" class="sl-min" aria-label="Minimize">–</button></div>
-      <p class="sl-hint">Flip skins live, then scroll the page to feel each one. Picks stick on this machine.</p>
+      <div class="sl-head"><strong>style lab</strong><span>help pick the look</span><button type="button" class="sl-min" aria-label="Minimize">–</button></div>
+      <p class="sl-hint">Flip skins live, then scroll to feel each one. Your pick sticks on this device — tell Fatima which combo wins.</p>
       <div class="sl-group">
         <span class="sl-label">Background</span>
         <div class="sl-chips" data-kind="bg">
