@@ -1,6 +1,6 @@
 /* custom cursor variants — all accent-aware, all pointer-events-free */
 
-.cur { position: fixed; top: 0; left: 0; z-index: 500; pointer-events: none; }
+.cur { position: fixed; top: 0; left: 0; z-index: 500; pointer-events: none; will-change: transform; }
 
 /* — halo ring — */
 .cur-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff; mix-blend-mode: difference; }
@@ -58,5 +58,45 @@
   color: var(--ink); opacity: 0; transition: opacity 0.2s; white-space: nowrap;
 }
 .cur-orb.is-hot .co-label { opacity: 1; }
+
+/* — studio caret — */
+.cur-caret svg { display: block; }
+.cur-caret .cc-body {
+  fill: #f6f3ec; stroke: #14111f; stroke-width: 1.4; stroke-linejoin: round;
+  transition: fill 0.16s;
+}
+.cur-caret.is-hot .cc-body { fill: var(--accent); }
+
+/* — crosshair fine — */
+.cur-xhair { width: 0; height: 0; }
+.cur-xhair .cx-dot {
+  position: absolute; width: 3.5px; height: 3.5px; left: -1.75px; top: -1.75px;
+  border-radius: 50%; background: #fff; box-shadow: 0 0 0 1px rgba(5, 4, 12, 0.6);
+}
+.cur-xhair .cx-tick {
+  position: absolute; background: var(--accent);
+  transition: transform 0.18s var(--ease-out), background 0.18s;
+}
+.cur-xhair .cx-n, .cur-xhair .cx-s { width: 1.4px; height: 7px; left: -0.7px; }
+.cur-xhair .cx-e, .cur-xhair .cx-w { height: 1.4px; width: 7px; top: -0.7px; }
+.cur-xhair .cx-n { top: -13px; } .cur-xhair .cx-s { top: 6px; }
+.cur-xhair .cx-w { left: -13px; } .cur-xhair .cx-e { left: 6px; }
+.cur-xhair.is-hot .cx-n { transform: translateY(-4px); }
+.cur-xhair.is-hot .cx-s { transform: translateY(4px); }
+.cur-xhair.is-hot .cx-w { transform: translateX(-4px); }
+.cur-xhair.is-hot .cx-e { transform: translateX(4px); }
+
+/* — comet — */
+.cur-comet-head {
+  width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%;
+  background: #fff; box-shadow: 0 0 12px -2px var(--accent);
+  transition: box-shadow 0.2s;
+}
+.cur-comet-head.is-hot { box-shadow: 0 0 0 5px var(--accent-soft), 0 0 18px -2px var(--accent); }
+.cur-comet-tail {
+  height: 2px; margin-top: -1px; border-radius: 999px;
+  background: linear-gradient(270deg, transparent, var(--accent));
+  transform-origin: left center; rotate: 180deg;
+}
 
 @media (prefers-reduced-motion: reduce) { .cur { display: none !important; } }

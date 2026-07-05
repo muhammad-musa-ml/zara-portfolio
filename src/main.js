@@ -40,7 +40,7 @@ function detectCaps() {
   const mem = navigator.deviceMemory || 8
   const small = window.innerWidth < 760
   const particleCount = small ? 7000 : mem >= 8 ? 12000 : 9000
-  return { reduced, webgl, particleCount, dprCap: small ? 1.8 : 2 }
+  return { reduced, webgl, particleCount, dprCap: small ? 1.6 : 1.8 }
 }
 
 async function boot() {
@@ -97,8 +97,9 @@ async function boot() {
   initCmdk({ scrollTo, openChat, toggleLens })
   initEggs({ scene: bgProxy })
 
-  // the style lab — local auditioning of backgrounds + cursors (dev / ?pick)
-  if ((import.meta.env.DEV || params.has('pick')) && !instant && !params.has('nolab')) {
+  // the style lab — live auditioning of backgrounds + cursors.
+  // Currently shipped ON for style voting; will be stripped for the final cut. ?nolab hides it.
+  if (!instant && !params.has('nolab')) {
     const { initPicker } = await import('./ui/picker.js')
     initPicker({
       currentBg: bgChoice,

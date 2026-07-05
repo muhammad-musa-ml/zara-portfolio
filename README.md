@@ -1,8 +1,8 @@
-# zara-portfolio
+# faati-portfolio
 
 A hand-built, scroll-driven 3D portfolio — **"an observatory at the edge of dawn"** — with an honesty-first AI twin.
 
-**Live:** https://muhammad-musa-ml.github.io/zara-portfolio/ · **AI twin deep link:** https://muhammad-musa-ml.github.io/zara-portfolio/#ai · **Résumé:** https://muhammad-musa-ml.github.io/zara-portfolio/resume.html
+**Live:** https://muhammad-musa-ml.github.io/faati-portfolio/ · **AI twin deep link:** https://muhammad-musa-ml.github.io/faati-portfolio/#ai · **Résumé:** https://muhammad-musa-ml.github.io/faati-portfolio/resume.html
 
 > ⚠️ All personal details are **clearly-labeled demo content** (see [CONTENT-GUIDE.md](./CONTENT-GUIDE.md)) until the real bio lands. The engineering is real; the persona is a placeholder.
 

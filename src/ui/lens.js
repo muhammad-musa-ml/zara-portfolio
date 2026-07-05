@@ -1,5 +1,6 @@
 // The design lens: the site annotates its own psychology.
 // Toggle it and every marked element explains the principle it uses.
+import { softLock, softUnlock } from './scroll-lock.js'
 
 const REGISTRY = [
   { key: 'hero-type', name: 'Visual hierarchy', note: 'The name is set ~9× body size in a high-contrast serif. Your eye lands there first, every time — hierarchy decided in your first 50ms.' },
@@ -21,81 +22,97 @@ export function initLens() {
   const toggle = document.getElementById('lens-toggle')
   const footerLens = document.getElementById('footer-lens')
   let on = false
-  let chips = []
+  let rafId = 0
   let pop = null
+  let popChip = null
 
   // annotate the two chrome elements that live outside the built DOM
   document.getElementById('ai-open')?.setAttribute('data-lens', 'ai-pill-nav')
   document.querySelector('.chapter-dots')?.setAttribute('data-lens', 'nav-dots')
 
+  // — drawer with an always-visible close row (sticky) —
   const drawer = document.createElement('aside')
   drawer.className = 'lens-drawer'
   drawer.setAttribute('data-lenis-prevent', '')
   drawer.setAttribute('aria-label', 'Design lens — the reasoning behind this site')
   drawer.innerHTML = `
-    <h3>The design lens</h3>
-    <p class="lens-tagline">This site practices what the portfolio preaches. Every numbered chip on the page marks a psychology-backed decision. The full list:</p>
+    <div class="ld-head">
+      <h3>The design lens</h3>
+      <button type="button" class="lens-close" aria-label="Close the design lens">✕ close</button>
+    </div>
+    <p class="lens-tagline">This site practices what the portfolio preaches. Every numbered chip on the page marks a psychology-backed decision — click one, or read the full list:</p>
     <ol class="lens-list">
       ${REGISTRY.map((r, i) => `<li><span class="ll-name"><span class="ll-idx">${i + 1}</span>${r.name}</span><span class="ll-note">${r.note}</span></li>`).join('')}
-    </ol>
-    <button type="button" class="ghost-btn lens-close">Close the lens</button>`
+    </ol>`
   root.appendChild(drawer)
 
-  function placeChips() {
-    chips.forEach((c) => c.remove())
-    chips = []
-    REGISTRY.forEach((r, i) => {
-      const target = document.querySelector(`[data-lens="${r.key}"]`)
-      if (!target) return
-      const rect = target.getBoundingClientRect()
-      if (rect.width === 0) return
-      const chip = document.createElement('button')
-      chip.className = 'lens-chip'
-      chip.type = 'button'
-      chip.textContent = i + 1
-      chip.setAttribute('aria-label', `Design note ${i + 1}: ${r.name}`)
-      chip.style.left = `${rect.left + window.scrollX + rect.width - 8}px`
-      chip.style.top = `${rect.top + window.scrollY - 10}px`
-      chip.addEventListener('click', (e) => { e.stopPropagation(); showPop(r, chip) })
-      document.body.appendChild(chip)
-      chips.push(chip)
-    })
+  // wheel over the drawer scrolls the drawer, never the page
+  drawer.addEventListener('pointerenter', softLock)
+  drawer.addEventListener('pointerleave', softUnlock)
+
+  // — chips: created once, tracked every frame (no DOM churn, no jank) —
+  const chips = []
+  REGISTRY.forEach((r, i) => {
+    const chip = document.createElement('button')
+    chip.className = 'lens-chip'
+    chip.type = 'button'
+    chip.textContent = i + 1
+    chip.setAttribute('aria-label', `Design note ${i + 1}: ${r.name}`)
+    chip.hidden = true
+    chip.addEventListener('click', (e) => { e.stopPropagation(); showPop(r, chip) })
+    document.body.appendChild(chip)
+    chips.push({ el: chip, entry: r, target: null })
+  })
+
+  function resolveTargets() {
+    chips.forEach((c) => { c.target = document.querySelector(`[data-lens="${c.entry.key}"]`) })
+  }
+
+  function track() {
+    rafId = requestAnimationFrame(track)
+    for (const c of chips) {
+      if (!c.target) continue
+      const r = c.target.getBoundingClientRect()
+      const visible = r.width > 0 && r.bottom > -40 && r.top < innerHeight + 40
+      c.el.hidden = !visible
+      if (visible) {
+        const x = Math.min(r.right - 8, innerWidth - 26)
+        const y = Math.max(6, r.top - 10)
+        c.el.style.transform = `translate3d(${x}px, ${y}px, 0)`
+      }
+    }
+    if (pop && popChip) {
+      const cr = popChip.getBoundingClientRect()
+      const left = Math.max(10, Math.min(cr.left, innerWidth - 316))
+      const top = cr.bottom + 10 + 300 > innerHeight ? cr.top - pop.offsetHeight - 10 : cr.bottom + 10
+      pop.style.transform = `translate3d(${left}px, ${Math.max(10, top)}px, 0)`
+    }
   }
 
   function showPop(r, chip) {
     hidePop()
+    popChip = chip
     pop = document.createElement('div')
     pop.className = 'lens-pop'
     pop.innerHTML = `<span class="lens-pop-name">${r.name}</span><span class="lens-pop-note">${r.note}</span>`
-    const rect = chip.getBoundingClientRect()
-    const left = Math.min(rect.left + window.scrollX, window.scrollX + window.innerWidth - 320)
-    pop.style.left = `${Math.max(window.scrollX + 10, left)}px`
-    pop.style.top = `${rect.bottom + window.scrollY + 10}px`
     document.body.appendChild(pop)
   }
-  function hidePop() { pop?.remove(); pop = null }
-
-  let replaceTimer = 0
-  function onMove() {
-    hidePop()
-    clearTimeout(replaceTimer)
-    replaceTimer = setTimeout(placeChips, 140)
-  }
+  function hidePop() { pop?.remove(); pop = null; popChip = null }
 
   function setLens(state) {
     on = state
     document.documentElement.classList.toggle('lens-on', on)
     toggle.setAttribute('aria-pressed', String(on))
     drawer.classList.toggle('is-open', on)
+    hidePop()
     if (on) {
-      placeChips()
-      window.addEventListener('scroll', onMove, { passive: true })
-      window.addEventListener('resize', onMove)
+      resolveTargets()
+      cancelAnimationFrame(rafId)
+      track()
     } else {
-      hidePop()
-      chips.forEach((c) => c.remove()); chips = []
-      window.removeEventListener('scroll', onMove)
-      window.removeEventListener('resize', onMove)
+      cancelAnimationFrame(rafId)
+      chips.forEach((c) => { c.el.hidden = true })
+      softUnlock()
     }
   }
 

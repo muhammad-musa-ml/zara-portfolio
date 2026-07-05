@@ -7,6 +7,7 @@
     "greetings": ["Hello", "السلام علیکم", "Salut", "Hola", "Ciao"],
     "name": "Fatima Mohsin Khan",
     "roles": ["Software Engineer", "Product Designer", "UI/UX Engineer"],
+    "dedication": "The life and girlfriend of Musa",
     "tagline": "I design with psychology. I ship with code.",
     "sub": "LUMS CS '26 — building interfaces that respect how people actually think.",
     "scrollCue": "Scroll to explore"

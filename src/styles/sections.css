@@ -53,6 +53,11 @@
 .hero-roles { display: flex; flex-wrap: wrap; gap: 0.7rem; align-items: baseline; font-family: var(--font-mono); font-size: clamp(0.78rem, 1.6vw, 0.95rem); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
 .hero-roles .role-sep { color: var(--accent); }
 
+.hero-dedication {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.25rem); color: #ffb8c1;
+  text-shadow: 0 0 24px rgba(253, 164, 175, 0.35);
+}
 .hero-tagline { font-family: var(--font-display); font-style: italic; font-size: clamp(1.35rem, 3vw, 2.1rem); color: var(--ink); max-width: 22ch; line-height: 1.25; }
 .hero-sub { color: var(--ink-dim); max-width: 46ch; }
 
@@ -95,7 +100,8 @@
 .project-card {
   position: sticky; top: clamp(4.5rem, 9vh, 6.5rem);
   border: 1px solid var(--panel-line); border-radius: 24px;
-  /* solid base so stacked cards never ghost through each other */
+  /* solid base so stacked cards never ghost through each other
+     (and no backdrop-filter — scroll perf) */
   background:
     linear-gradient(160deg, rgba(46, 40, 72, 0.5), rgba(16, 14, 28, 0.15) 55%),
     #110f1d;

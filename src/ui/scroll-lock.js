@@ -17,3 +17,8 @@ export function unlockScroll() {
     lenis?.start()
   }
 }
+
+// soft variant: freeze Lenis only (no overflow change, no scrollbar jump) —
+// used while the pointer rests over an internally-scrollable panel.
+export function softLock() { lenis?.stop() }
+export function softUnlock() { if (locks === 0) lenis?.start() }

@@ -1,9 +1,9 @@
 {
-  "name": "zara-portfolio",
+  "name": "faati-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Portfolio of Zara Ahmed — software engineer & product designer. Built from scratch with three.js + GSAP.",
+  "description": "Portfolio of Fatima Mohsin Khan — software engineer & product designer. Built from scratch with three.js + GSAP.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

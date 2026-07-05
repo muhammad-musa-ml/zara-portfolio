@@ -24,6 +24,7 @@ export function buildSite(content) {
         <p class="hero-greeting" data-lens="greeting"><span class="greet">${esc(c.hero.greetings[0])}</span></p>
         <h1 class="hero-name" data-lens="hero-type">${splitName(c.hero.name)}</h1>
         <p class="hero-roles">${c.hero.roles.map(esc).join(' <span class="role-sep">/</span> ')}</p>
+        ${c.hero.dedication ? `<p class="hero-dedication" data-reveal style="--d:.45s">${esc(c.hero.dedication)}</p>` : ''}
         <p class="hero-tagline" data-reveal style="--d:.55s">${esc(c.hero.tagline)}</p>
         <p class="hero-sub" data-reveal style="--d:.7s">${esc(c.hero.sub)}</p>
         <div class="hero-cue" data-reveal style="--d:1s" data-lens="scroll-cue">
