@@ -4,23 +4,13 @@ import {
   ShaderMaterial, Points, Color, AdditiveBlending, Vector3
 } from 'three'
 import { buildTargets } from './shapes.js'
-
-// (colorA, colorB) per chapter — tuned to the sky gradients in base.css
-const PALETTES = [
-  ['#8b93ff', '#3b3f9e'],
-  ['#a5b4fc', '#6d5bd0'],
-  ['#c084fc', '#7c3aed'],
-  ['#5eead4', '#0f766e'],
-  ['#7dd3fc', '#2563a8'],
-  ['#fda4af', '#b0486b'],
-  ['#f7ab72', '#d95d3b']
-]
+import { PALETTES } from '../backgrounds/palettes.js'
 // formations live right-of-center — the content column owns the left
-const CAM_Z = [3.6, 3.8, 3.4, 3.2, 3.7, 3.4, 3.7]
-const OFFSET_X = [1.05, 1.1, 0.95, 1.05, 1.15, -0.85, 1.2]
-const OFFSET_Y = [0.0, 0.1, 0.05, 0.1, 0.0, 0.05, 0.22]
-// flat formations (eye, heart) must land face-on; volumetric ones may turn
-const ROT_Y = [0.0, 0.9, 1.7, 0.12, 0.55, -0.1, 0.35]
+const CAM_Z = [3.6, 3.8, 3.4, 3.2, 4.0, 3.4, 3.7]
+const OFFSET_X = [1.05, 1.1, 0.95, 1.05, 1.3, -0.85, 1.2]
+const OFFSET_Y = [0.0, 0.1, 0.05, 0.1, 0.05, 0.05, 0.22]
+// flat formations (eye, heart, wave) must land face-on; volumetric ones may turn
+const ROT_Y = [0.0, 0.9, 1.7, 0.12, 0.18, -0.1, 0.35]
 
 const VERT = /* glsl */ `
 attribute vec3 aTo;
@@ -57,9 +47,9 @@ void main() {
   vec4 mv = modelViewMatrix * vec4(pos, 1.0);
   gl_Position = projectionMatrix * mv;
 
-  float size = uSize * (0.45 + 1.0 * fract(aSeed * 7.31));
+  float size = uSize * (0.4 + 1.1 * fract(aSeed * 7.31));
   float twinkle = 0.74 + 0.26 * sin(uTime * (1.1 + aSeed * 2.2) + aSeed * 41.0);
-  gl_PointSize = clamp(size * twinkle * uPixelRatio * (110.0 / -mv.z), 1.0, 24.0);
+  gl_PointSize = clamp(size * twinkle * uPixelRatio * (110.0 / -mv.z), 1.5, 30.0);
   vSeed = aSeed;
   vDepth = smoothstep(6.5, 1.6, -mv.z);
 }`
@@ -73,11 +63,12 @@ varying float vSeed, vDepth;
 void main() {
   vec2 uv = gl_PointCoord - 0.5;
   float d = length(uv);
-  float core = smoothstep(0.5, 0.04, d);
-  float halo = smoothstep(0.5, 0.16, d);
+  // creamy bokeh disc: gaussian core + the faintest rim
+  float g = exp(-d * d * 11.0);
+  float rim = smoothstep(0.5, 0.36, d) * smoothstep(0.22, 0.36, d);
   vec3 col = mix(uColA, uColB, fract(vSeed * 3.71));
-  float a = (core * 0.3 + halo * 0.075) * uOpacity * (0.35 + 0.65 * vDepth);
-  if (a < 0.012) discard;
+  float a = (g * 0.16 + rim * 0.03) * uOpacity * (0.35 + 0.65 * vDepth);
+  if (a < 0.01) discard;
   gl_FragColor = vec4(col, a);
 }`
 
@@ -107,7 +98,7 @@ export function createScene(canvas, { particleCount = 14000, dprCap = 2, instant
     uniforms: {
       uMix: { value: 0 },
       uTime: { value: 0 },
-      uSize: { value: 0.85 },
+      uSize: { value: 1.15 },
       uRepel: { value: 0.16 },
       uSwirl: { value: 0 },
       uPixelRatio: { value: Math.min(window.devicePixelRatio || 1, dprCap) },
@@ -190,8 +181,9 @@ export function createScene(canvas, { particleCount = 14000, dprCap = 2, instant
     const world = camera.position.clone().add(dir.multiplyScalar(dist))
     mouseTarget.set(world.x - points.position.x, world.y - points.position.y, 0)
   }
+  const onPointerLeave = () => mouseTarget.set(99, 99, 0)
   window.addEventListener('pointermove', onPointer, { passive: true })
-  window.addEventListener('pointerleave', () => mouseTarget.set(99, 99, 0))
+  window.addEventListener('pointerleave', onPointerLeave)
 
   let last = performance.now()
   function tick(now) {
@@ -211,14 +203,25 @@ export function createScene(canvas, { particleCount = 14000, dprCap = 2, instant
     renderer.render(scene, camera)
   }
 
-  document.addEventListener('visibilitychange', () => {
+  const onVisibility = () => {
     if (document.hidden) { cancelAnimationFrame(rafId); running = false }
     else if (!running) { running = true; last = performance.now(); rafId = requestAnimationFrame(tick) }
-  })
+  }
+  document.addEventListener('visibilitychange', onVisibility)
 
   window.addEventListener('resize', resize)
   resize()
   rafId = requestAnimationFrame(tick)
+
+  function dispose() {
+    cancelAnimationFrame(rafId)
+    document.removeEventListener('visibilitychange', onVisibility)
+    window.removeEventListener('resize', resize)
+    window.removeEventListener('pointermove', onPointer)
+    window.removeEventListener('pointerleave', onPointerLeave)
+    geo.dispose(); mat.dispose()
+    renderer.dispose(); renderer.forceContextLoss()
+  }
 
   // dev-only hook: lets tooling force frames when rAF is throttled (hidden tabs)
   if (import.meta.env.DEV) {
@@ -249,5 +252,5 @@ export function createScene(canvas, { particleCount = 14000, dprCap = 2, instant
       .set(u.uSwirl, { value: 0 })
   }
 
-  return { setProgress, burst, renderer }
+  return { setProgress, burst, dispose, renderer }
 }

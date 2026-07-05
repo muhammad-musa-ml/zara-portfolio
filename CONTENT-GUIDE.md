@@ -1,6 +1,6 @@
 # Content guide — swapping demo content for the real person
 
-Every fact on this site is **fabricated demo content** built around the persona "Zara Ahmed" (LUMS CS '26). This file lists exactly what to replace and where. Nothing else in the codebase hardcodes personal facts.
+Every fact on this site is **fabricated demo content** built around the persona "Fatima Mohsin Khan" (LUMS CS '26). This file lists exactly what to replace and where. Nothing else in the codebase hardcodes personal facts.
 
 ## The three content files
 
@@ -14,12 +14,12 @@ Keep the three consistent — same companies, same metrics, same dates. The AI t
 
 ## Fabricated inventory (all must be replaced)
 
-- **Name**: Zara Ahmed (also: monogram "za." in `index.html` nav + loader, favicon `public/favicon.svg`, `<title>`/meta in `index.html` and `resume.html`)
+- **Name**: Fatima Mohsin Khan (also: monogram "za." in `index.html` nav + loader, favicon `public/favicon.svg`, `<title>`/meta in `index.html` and `resume.html`)
 - **Employers**: "Lumen Loop" (SWE internship, Summer 2024) and "Notch Studio" (design internship, Summer 2025) — fictional companies
 - **Projects**: Rasta, Alfaaz, Marrow, Sahulat — fictional, with fictional metrics (80 students, 72% agreement, 25+ components, 210 users / 340 sessions / 4.6★)
 - **Awards**: Dean's Honor List (Fall 2023, Spring 2025), "Indus Valley Hackathon" win — fictional
 - **Roles**: Design Lead of "LUMS Design Collective", Data Structures TA — fictional
-- **Contact**: `hello@zaraahmed.dev`, `github.com/zaraahmed`, `linkedin.com/in/zaraahmed` — placeholders (links are `#` in the contact section; also update the plain-text contact line in `src/resume.js` and the `cmdk.js` "Copy email" command)
+- **Contact**: `hello@fatimamohsin.dev`, `github.com/fatimamohsin`, `linkedin.com/in/fatimamohsin` — placeholders (links are `#` in the contact section; also update the plain-text contact line in `src/resume.js` and the `cmdk.js` "Copy email" command)
 - **Fun facts / values / timeline entries** — all invented
 - **Real things kept on purpose**: LUMS, the degree (BS CS 2022–2026), Lahore, the SWE/design/product positioning
 

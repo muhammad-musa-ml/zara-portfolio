@@ -39,5 +39,5 @@ export function matchFaq(question, faq) {
 export function offlineAnswer(question, faq) {
   const hit = matchFaq(question, faq)
   if (hit) return hit.a
-  return "I'm in offline mode right now (the free live model is resting), so I can only answer from my prepared notes — and that question isn't in them. Try one of the suggested questions below, or reach the human Zara directly at hello@zaraahmed.dev."
+  return "I'm in offline mode right now (the free live model is resting), so I can only answer from my prepared notes — and that question isn't in them. Try one of the suggested questions below, or reach the human Fatima directly at hello@fatimamohsin.dev."
 }

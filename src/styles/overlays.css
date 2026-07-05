@@ -166,7 +166,47 @@ html.lens-on [data-lens] { outline: 1px dashed var(--accent-line); outline-offse
 .cmdk-item {
   display: flex; align-items: center; gap: 0.7rem; width: 100%; text-align: left;
   padding: 0.65rem 0.8rem; border-radius: 10px; color: var(--ink-dim); font-size: 0.92rem;
+  border: 1px solid transparent;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
 }
 .cmdk-item .ck-kicker { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-left: auto; }
-.cmdk-item.is-active { background: var(--accent-soft); color: var(--ink); }
+.cmdk-item:hover, .cmdk-item.is-active {
+  background: var(--accent-soft); color: var(--ink); border-color: var(--accent-line);
+}
+.cmdk-item.is-active::before { content: "▸"; color: var(--accent); font-size: 0.7rem; }
+.cmdk-item:active { transform: scale(0.985); }
+.cmdk-item:hover .ck-kicker, .cmdk-item.is-active .ck-kicker { color: var(--accent); }
 .cmdk-empty { padding: 1rem 1.2rem; color: var(--ink-faint); font-size: 0.9rem; }
+
+/* ——— style lab (dev / ?pick only) ————————————— */
+
+#style-lab { position: fixed; left: 1rem; bottom: 1rem; z-index: 380; font-family: var(--font-body); }
+.sl-tab {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  background: rgba(12, 10, 22, 0.95); border: 1px solid var(--accent-line); color: var(--ink);
+  padding: 0.5rem 0.9rem; border-radius: 999px; box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.8);
+}
+.sl-tab.is-hidden { display: none; }
+.sl-panel {
+  display: none; width: min(320px, 88vw);
+  background: rgba(10, 9, 19, 0.97); border: 1px solid var(--panel-line); border-radius: 16px;
+  padding: 0.9rem 1rem 1rem; box-shadow: 0 24px 70px -24px rgba(0, 0, 0, 0.9);
+}
+.sl-panel.is-open { display: grid; gap: 0.7rem; }
+.sl-head { display: flex; align-items: baseline; gap: 0.5rem; }
+.sl-head strong { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 1.1rem; }
+.sl-head span { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); }
+.sl-min { margin-left: auto; width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--panel-line); color: var(--ink-dim); line-height: 1; }
+.sl-min:hover { color: var(--ink); border-color: var(--accent-line); }
+.sl-hint { font-size: 0.76rem; color: var(--ink-faint); line-height: 1.45; }
+.sl-group { display: grid; gap: 0.45rem; }
+.sl-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+.sl-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.sl-chip {
+  font-size: 0.76rem; padding: 0.32rem 0.65rem; border-radius: 999px;
+  border: 1px solid var(--panel-line); color: var(--ink-dim);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.sl-chip:hover { border-color: var(--accent-line); color: var(--ink); }
+.sl-chip.is-on { background: var(--accent); border-color: var(--accent); color: #0a0913; font-weight: 620; }
+.sl-note { font-size: 0.7rem; color: var(--ink-faint); font-style: italic; min-height: 1em; }

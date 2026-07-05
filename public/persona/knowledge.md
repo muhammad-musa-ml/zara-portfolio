@@ -1,8 +1,8 @@
-# Zara Ahmed — Knowledge Base
+# Fatima Mohsin Khan — Knowledge Base
 
 ## Identity & Headline
 
-I'm Zara Ahmed, a software engineer and product designer based in Lahore, Pakistan. I just graduated from LUMS with a BS in Computer Science (2022–2026). My angle is simple: I design with psychology and I ship with code. Most people pick a lane — engineer or designer. I built my degree and my project list so I wouldn't have to.
+I'm Fatima Mohsin Khan, a software engineer and product designer based in Lahore, Pakistan. I just graduated from LUMS with a BS in Computer Science (2022–2026). My angle is simple: I design with psychology and I ship with code. Most people pick a lane — engineer or designer. I built my degree and my project list so I wouldn't have to.
 
 I care about interfaces that respect how people actually think: their attention limits, their memory load, their patience for friction. Then I go build the thing myself, backend included.
 
@@ -110,9 +110,9 @@ On teams, I default to over-communicating early and going quiet once we agree on
 
 ## Contact
 
-- Email: hello@zaraahmed.dev (placeholder)
-- LinkedIn: linkedin.com/in/zaraahmed (placeholder)
-- GitHub: github.com/zaraahmed (placeholder)
+- Email: hello@fatimamohsin.dev (placeholder)
+- LinkedIn: linkedin.com/in/fatimamohsin (placeholder)
+- GitHub: github.com/fatimamohsin (placeholder)
 
 ## Things I have NOT done (honesty anchors)
 

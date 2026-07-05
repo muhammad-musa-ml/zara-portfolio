@@ -158,7 +158,7 @@ export function buildSite(content) {
         <h2 id="h-offscreen" data-reveal>Off<em>screen</em></h2>
         <div class="off-grid">
           <div class="portrait-frame" data-reveal data-lens="portrait">
-            <span class="pf-mark" aria-hidden="true">z.</span>
+            <span class="pf-mark" aria-hidden="true">f.</span>
             <span class="pf-note">photo · coming soon</span>
           </div>
           <div>
@@ -190,7 +190,7 @@ export function buildSite(content) {
       <div class="chapter-body contact-stage" data-lens="peak-end">
         <h2 id="h-contact" data-reveal>Let's <em>talk</em></h2>
         <p class="contact-body" data-reveal>${esc(c.contact.body)}</p>
-        <a class="contact-email" href="mailto:${esc(c.contact.email)}" data-reveal data-cursor="hover">${esc(c.contact.email)}</a>
+        <a class="contact-email" href="mailto:${esc(c.contact.email)}" data-reveal data-cursor="hover" data-cursor-label="say hi">${esc(c.contact.email)}</a>
         <div class="contact-links" data-reveal>
           ${c.contact.links.map((l) => `<a href="${esc(l.url)}" ${l.url === '#' ? '' : 'target="_blank" rel="noopener"'}>${esc(l.label)}</a>`).join('')}
         </div>

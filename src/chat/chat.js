@@ -3,6 +3,7 @@ import { askLLM } from './providers.js'
 import { loadKnowledge, buildSystemPrompt } from './persona.js'
 import { loadFaq, offlineAnswer } from './faq.js'
 import { toast } from '../ui/chrome.js'
+import { lockScroll, unlockScroll } from '../ui/scroll-lock.js'
 
 const MAX_INPUT = 500
 const MAX_TURNS = 12 // messages kept as model context (6 exchanges)
@@ -24,13 +25,13 @@ export function initChat({ content, config, scene, gsap }) {
           <button type="button" class="chat-close" aria-label="Close chat">✕</button>
         </div>
       </header>
-      <div class="chat-thread" data-thread aria-live="polite"></div>
+      <div class="chat-thread" data-thread data-lenis-prevent aria-live="polite"></div>
       <div class="chat-foot">
         <div class="chat-chips" data-chips>
           ${c.chips.map((q) => `<button type="button" class="chip">${q}</button>`).join('')}
         </div>
         <form class="chat-inputrow" data-form>
-          <textarea class="chat-input" rows="1" maxlength="${MAX_INPUT}" placeholder="Ask anything about Zara…" aria-label="Your question"></textarea>
+          <textarea class="chat-input" rows="1" maxlength="${MAX_INPUT}" placeholder="Ask anything about Fatima…" aria-label="Your question"></textarea>
           <button type="submit" class="chat-send" disabled>Ask</button>
         </form>
         <div class="chat-disclaimer">
@@ -57,10 +58,10 @@ export function initChat({ content, config, scene, gsap }) {
 
   // — persistence: survive tab navigation, not the browser session —
   try {
-    const saved = JSON.parse(sessionStorage.getItem('zara-chat') || '[]')
+    const saved = JSON.parse(sessionStorage.getItem('fmk-chat') || '[]')
     if (Array.isArray(saved)) history = saved.slice(-MAX_TURNS)
   } catch {}
-  const persist = () => { try { sessionStorage.setItem('zara-chat', JSON.stringify(history)) } catch {} }
+  const persist = () => { try { sessionStorage.setItem('fmk-chat', JSON.stringify(history)) } catch {} }
 
   function setMode(state) {
     modeBadge.classList.remove('is-live', 'is-offline')
@@ -72,7 +73,7 @@ export function initChat({ content, config, scene, gsap }) {
   function addMsg(role, text, { note = '', typewriter = false } = {}) {
     const el = document.createElement('div')
     el.className = `msg ${role === 'user' ? 'msg-user' : 'msg-ai'}`
-    el.innerHTML = `<span class="msg-tag">${role === 'user' ? 'you' : 'zara · ai twin'}</span><p class="msg-body"></p>${note ? `<span class="msg-note">${note}</span>` : ''}`
+    el.innerHTML = `<span class="msg-tag">${role === 'user' ? 'you' : 'fatima · ai twin'}</span><p class="msg-body"></p>${note ? `<span class="msg-note">${note}</span>` : ''}`
     thread.appendChild(el)
     const body = el.querySelector('.msg-body')
     if (!typewriter) { body.textContent = text; scrollThread(); return Promise.resolve() }
@@ -93,7 +94,7 @@ export function initChat({ content, config, scene, gsap }) {
     const el = document.createElement('div')
     el.className = 'msg msg-ai'
     el.dataset.typing = '1'
-    el.innerHTML = `<span class="msg-tag">zara · ai twin</span><span class="typing"><i></i><i></i><i></i></span>`
+    el.innerHTML = `<span class="msg-tag">fatima · ai twin</span><span class="typing"><i></i><i></i><i></i></span>`
     thread.appendChild(el)
     scrollThread()
     return el
@@ -120,10 +121,10 @@ export function initChat({ content, config, scene, gsap }) {
     if (!q) return
 
     // easter egg
-    if (/^sudo\s+hire\s+zara/i.test(q)) {
+    if (/^sudo\s+hire\s+fatima/i.test(q)) {
       addMsg('user', q)
       scene?.burst(gsap)
-      await addMsg('assistant', 'Permission granted. Deploying enthusiasm… done. ✦ (Formally though: hello@zaraahmed.dev — she answers fast.)', { typewriter: true })
+      await addMsg('assistant', 'Permission granted. Deploying enthusiasm… done. ✦ (Formally though: hello@fatimamohsin.dev — she answers fast.)', { typewriter: true })
       return
     }
 
@@ -186,7 +187,7 @@ export function initChat({ content, config, scene, gsap }) {
     if (state === open) return
     open = state
     veil.classList.toggle('is-open', open)
-    document.documentElement.style.overflow = open ? 'hidden' : ''
+    if (open) lockScroll(); else unlockScroll()
     if (open) {
       lastFocus = document.activeElement
       renderHistory()

@@ -11,8 +11,8 @@ A hand-built, scroll-driven 3D portfolio — **"an observatory at the edge of da
 - **The living sky** — one draw-call of ~16k GPU particles that morphs through seven procedural formations (nebula → helix → torus knot → eye → wave → heart → beacon) as you scroll, with the palette traveling from midnight to dawn. Custom GLSL, no models, no textures, cursor-reactive.
 - **Seven chapters** — hero, education timeline, sticky project case studies, an interactive design-psychology lab (Hick's law / Fitts's law / Von Restorff experiments that measure *your* behavior), skills, personal, contact.
 - **The design lens (◐)** — toggle it and the site annotates its own UX decisions with the psychology behind them. The portfolio practices what it preaches.
-- **Zara's AI twin** — a chat grounded in [`public/persona/knowledge.md`](./public/persona/knowledge.md) with an explicit honesty contract: it says "no, I haven't done that" *first*, then bridges to transferable evidence. Includes an anti-hallucination "things I have NOT done" list.
-- **Command palette** (`Ctrl/⌘ K`), custom cursor, Konami code, `sudo hire zara`, print-ready résumé page, reduced-motion + no-WebGL fallbacks, full keyboard navigation.
+- **Fatima's AI twin** — a chat grounded in [`public/persona/knowledge.md`](./public/persona/knowledge.md) with an explicit honesty contract: it says "no, I haven't done that" *first*, then bridges to transferable evidence. Includes an anti-hallucination "things I have NOT done" list.
+- **Command palette** (`Ctrl/⌘ K`), custom cursor, Konami code, `sudo hire fatima`, print-ready résumé page, reduced-motion + no-WebGL fallbacks, full keyboard navigation.
 
 ## Stack
 

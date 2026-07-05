@@ -64,26 +64,4 @@ export function initNavDots() {
   })
 }
 
-export function initCursor({ reduced }) {
-  const fine = window.matchMedia('(pointer: fine)').matches
-  if (!fine || reduced) return
-  const dot = document.createElement('div'); dot.id = 'cursor-dot'
-  const ring = document.createElement('div'); ring.id = 'cursor-ring'
-  document.body.append(dot, ring)
-  document.documentElement.classList.add('cursor-live')
-
-  let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y, seen = false
-  window.addEventListener('pointermove', (e) => {
-    x = e.clientX; y = e.clientY
-    if (!seen) { rx = x; ry = y; seen = true }
-    const hot = e.target.closest('a, button, [data-cursor], input, textarea, .chip')
-    ring.classList.toggle('is-hover', !!hot)
-  }, { passive: true })
-
-  ;(function loop() {
-    rx += (x - rx) * 0.16; ry += (y - ry) * 0.16
-    dot.style.transform = `translate(${x}px, ${y}px)`
-    ring.style.transform = `translate(${rx}px, ${ry}px)`
-    requestAnimationFrame(loop)
-  })()
-}
+// (custom cursors live in ui/cursors.js)

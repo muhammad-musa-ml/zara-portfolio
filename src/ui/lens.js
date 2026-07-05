@@ -30,6 +30,7 @@ export function initLens() {
 
   const drawer = document.createElement('aside')
   drawer.className = 'lens-drawer'
+  drawer.setAttribute('data-lenis-prevent', '')
   drawer.setAttribute('aria-label', 'Design lens — the reasoning behind this site')
   drawer.innerHTML = `
     <h3>The design lens</h3>

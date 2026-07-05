@@ -1,11 +1,13 @@
 // Command palette — because she's still a CS grad at heart.
+import { lockScroll, unlockScroll } from './scroll-lock.js'
+
 export function initCmdk({ scrollTo, openChat, toggleLens }) {
   const root = document.getElementById('cmdk-root')
   root.innerHTML = `
     <div class="cmdk-veil" role="dialog" aria-modal="true" aria-label="Command palette">
       <div class="cmdk-panel">
         <input class="cmdk-input" type="text" placeholder="Where to? Try “projects”, “ai”, “lens”…" aria-label="Search commands" />
-        <ul class="cmdk-list"></ul>
+        <ul class="cmdk-list" data-lenis-prevent></ul>
       </div>
     </div>`
   const veil = root.querySelector('.cmdk-veil')
@@ -23,7 +25,7 @@ export function initCmdk({ scrollTo, openChat, toggleLens }) {
     { label: 'Ask my AI twin', kicker: 'ai', run: openChat },
     { label: 'Toggle the design lens', kicker: 'meta', run: toggleLens },
     { label: 'Open the résumé', kicker: 'pdf', run: () => { location.href = './resume.html' } },
-    { label: 'Copy email address', kicker: 'hi', run: async () => { try { await navigator.clipboard.writeText('hello@zaraahmed.dev') } catch {} } }
+    { label: 'Copy email address', kicker: 'hi', run: async () => { try { await navigator.clipboard.writeText('hello@fatimamohsin.dev') } catch {} } }
   ]
 
   let filtered = commands
@@ -41,15 +43,24 @@ export function initCmdk({ scrollTo, openChat, toggleLens }) {
     if (!filtered.length) { list.innerHTML = `<li class="cmdk-empty">Nothing matches — try “ai” or “work”.</li>`; return }
     list.innerHTML = filtered.map((c, i) =>
       `<li><button type="button" class="cmdk-item ${i === active ? 'is-active' : ''}" data-i="${i}">${c.label}<span class="ck-kicker">${c.kicker}</span></button></li>`).join('')
-    list.querySelectorAll('.cmdk-item').forEach((btn) => btn.addEventListener('click', () => exec(Number(btn.dataset.i))))
+    list.querySelectorAll('.cmdk-item').forEach((btn) => {
+      btn.addEventListener('click', () => exec(Number(btn.dataset.i)))
+      // hover moves the selection — mouse and keyboard stay in sync
+      btn.addEventListener('pointerenter', () => {
+        active = Number(btn.dataset.i)
+        list.querySelectorAll('.cmdk-item').forEach((b) => b.classList.toggle('is-active', b === btn))
+      })
+    })
   }
 
-  function exec(i) { const cmd = filtered[i]; if (!cmd) return; setOpen(false); setTimeout(() => cmd.run(), 60) }
+  function exec(i) { const cmd = filtered[i]; if (!cmd) return; setOpen(false); setTimeout(() => cmd.run(), 80) }
 
   function setOpen(state) {
+    if (state === open) return
     open = state
     veil.classList.toggle('is-open', open)
-    if (open) { input.value = ''; filtered = commands; active = 0; render(); setTimeout(() => input.focus(), 40) }
+    if (open) { lockScroll(); input.value = ''; filtered = commands; active = 0; render(); setTimeout(() => input.focus(), 40) }
+    else unlockScroll()
   }
 
   input.addEventListener('input', () => {

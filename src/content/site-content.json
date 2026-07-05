@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Zara Ahmed — Software Engineer & Product Designer",
-    "description": "Zara Ahmed builds interfaces grounded in psychology and ships the code behind them. LUMS CS '26. Portfolio, projects, and an honest AI twin."
+    "title": "Fatima Mohsin Khan — Software Engineer & Product Designer",
+    "description": "Fatima Mohsin Khan builds interfaces grounded in psychology and ships the code behind them. LUMS CS '26. Portfolio, projects, and an honest AI twin."
   },
   "hero": {
     "greetings": ["Hello", "السلام علیکم", "Salut", "Hola", "Ciao"],
-    "name": "Zara Ahmed",
+    "name": "Fatima Mohsin Khan",
     "roles": ["Software Engineer", "Product Designer", "UI/UX Engineer"],
     "tagline": "I design with psychology. I ship with code.",
     "sub": "LUMS CS '26 — building interfaces that respect how people actually think.",
@@ -125,7 +125,7 @@
   "contact": {
     "headline": "Let's talk",
     "body": "I'm available now, open to relocating, and open to remote or hybrid roles. Reach out and I'll get back to you directly.",
-    "email": "hello@zaraahmed.dev",
+    "email": "hello@fatimamohsin.dev",
     "links": [
       { "label": "GitHub", "url": "#" },
       { "label": "LinkedIn", "url": "#" },
@@ -134,18 +134,18 @@
     "closing": "Thanks for scrolling this far. Say hello."
   },
   "chat": {
-    "title": "Zara's AI twin",
+    "title": "Fatima's AI twin",
     "subtitle": "Grounded in her real portfolio. Honest by design.",
-    "welcome": "Hi, I'm Zara's AI twin. Ask me about her projects, her stack, or her design process. I'll also tell you straight when something's outside what she's actually done.",
+    "welcome": "Hi, I'm Fatima's AI twin. Ask me about her projects, her stack, or her design process. I'll also tell you straight when something's outside what she's actually done.",
     "chips": ["What's her strongest project?", "Is she more engineer or designer?", "Can she do quantum physics?", "How does she work in a team?", "Is she available to hire?"],
-    "disclaimer": "This AI may summarize loosely. Verify anything specific with the human Zara."
+    "disclaimer": "This AI may summarize loosely. Verify anything specific with the human Fatima."
   },
   "footer": {
     "line": "Designed & built from scratch — three.js, GSAP, and an unreasonable love of easing curves.",
-    "credit": "© 2026 Zara Ahmed"
+    "credit": "© 2026 Fatima Mohsin Khan"
   },
   "resume": {
-    "headline": "Zara Ahmed",
+    "headline": "Fatima Mohsin Khan",
     "subline": "Software Engineer · Product Designer",
     "summary": "LUMS CS '26 graduate building interfaces grounded in psychology and shipping the full-stack code behind them.",
     "sections": {

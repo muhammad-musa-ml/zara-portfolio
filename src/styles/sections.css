@@ -43,8 +43,10 @@
 
 .hero-name {
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(3.4rem, 12.5vw, 10rem); line-height: 0.94; letter-spacing: -0.02em;
+  font-size: clamp(2.9rem, 9.4vw, 7.8rem); line-height: 0.98; letter-spacing: -0.02em;
+  text-wrap: balance;
 }
+.hero-name .word { display: inline-block; white-space: nowrap; }
 .hero-name .word:last-child { font-style: italic; }
 .hero-name .char { display: inline-block; will-change: transform; }
 
@@ -93,8 +95,10 @@
 .project-card {
   position: sticky; top: clamp(4.5rem, 9vh, 6.5rem);
   border: 1px solid var(--panel-line); border-radius: 24px;
-  background: linear-gradient(160deg, rgba(20, 18, 34, 0.82), rgba(10, 9, 19, 0.9));
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  /* solid base so stacked cards never ghost through each other */
+  background:
+    linear-gradient(160deg, rgba(46, 40, 72, 0.5), rgba(16, 14, 28, 0.15) 55%),
+    #110f1d;
   padding: clamp(1.4rem, 3.5vw, 2.6rem);
   display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(1.4rem, 3vw, 2.6rem);
   box-shadow: 0 24px 80px -32px rgba(0, 0, 0, 0.85);

@@ -42,7 +42,7 @@
   {
     "q": "What are your salary expectations?",
     "variants": ["What salary are you looking for?", "What's your expected compensation?", "How much do you want to be paid?"],
-    "a": "I'd rather talk about the role and the team first, and get to compensation once we both know it's a real fit. If you need a number early to see if we're in the same range, I'm happy to have that conversation directly with the human Zara."
+    "a": "I'd rather talk about the role and the team first, and get to compensation once we both know it's a real fit. If you need a number early to see if we're in the same range, I'm happy to have that conversation directly with the human Fatima."
   },
   {
     "q": "What's your biggest weakness?",
@@ -77,12 +77,12 @@
   {
     "q": "How can I contact you?",
     "variants": ["What's your email?", "How do I reach you?", "Contact info?"],
-    "a": "Easiest is email: hello@zaraahmed.dev. I've also got GitHub and LinkedIn linked on this site if you'd rather look through the work first."
+    "a": "Easiest is email: hello@fatimamohsin.dev. I've also got GitHub and LinkedIn linked on this site if you'd rather look through the work first."
   },
   {
     "q": "Is this AI actually you?",
-    "variants": ["Am I talking to the real Zara?", "Is this a real person?", "Is this AI real?", "Are you actually Zara?"],
-    "a": "I'm Zara's AI twin, not Zara herself. I'm grounded in her real portfolio, resume, and project details, and I try to be exactly as honest about her gaps as she'd be. For anything you need a direct human answer to, like scheduling or specifics, reach out through the contact info and the actual Zara will get back to you."
+    "variants": ["Am I talking to the real Fatima?", "Is this a real person?", "Is this AI real?", "Are you actually Fatima?"],
+    "a": "I'm Fatima's AI twin, not Fatima herself. I'm grounded in her real portfolio, resume, and project details, and I try to be exactly as honest about her gaps as she'd be. For anything you need a direct human answer to, like scheduling or specifics, reach out through the contact info and the actual Fatima will get back to you."
   },
   {
     "q": "What do you want in your first role?",

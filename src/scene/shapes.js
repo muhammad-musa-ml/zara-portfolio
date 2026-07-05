@@ -114,11 +114,11 @@ export function gridWave(count) {
     for (let cx = 0; cx < cols && i < count; cx++) {
       const u = cx / (cols - 1) - 0.5
       const v = ry / (rows - 1) - 0.5
-      const x = u * 2.9
-      const z = v * 1.9
+      const x = u * 2.2
+      const z = v * 1.5
       const y = Math.sin(u * 5.2) * 0.28 + Math.cos(v * 4.4 + u * 2.2) * 0.24
-      a[i * 3] = x; a[i * 3 + 1] = y * 1.15; a[i * 3 + 2] = z
-      jitter(a, i * 3, 0.12)
+      a[i * 3] = x; a[i * 3 + 1] = y * 1.4; a[i * 3 + 2] = z
+      jitter(a, i * 3, 0.18)
       i++
     }
   }

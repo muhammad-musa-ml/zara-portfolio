@@ -7,10 +7,10 @@ const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'Ar
 export function initEggs({ scene }) {
   // console note for the dev-tools crowd
   console.log(
-    '%czara.ahmed %c— hi, fellow inspector 👋\n' +
+    '%cfatima.mohsin %c— hi, fellow inspector 👋\n' +
     'This site is hand-built: three.js particles, GSAP scroll choreography, zero templates.\n' +
     'Demo content is honestly labeled; the AI twin is honestly grounded.\n' +
-    'Try the Konami code. Or type “sudo hire zara” into the AI chat.',
+    'Try the Konami code. Or type “sudo hire fatima” into the AI chat.',
     'font-family: Georgia, serif; font-style: italic; font-size: 16px; color: #ffc38f;',
     'color: #8b93ff;'
   )

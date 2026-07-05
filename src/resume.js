@@ -15,7 +15,7 @@ sheet.innerHTML = `
   <header class="rs-head">
     <h1 class="rs-name">${esc(r.headline)}</h1>
     <p class="rs-subline">${esc(r.subline)}</p>
-    <p class="rs-contactline">Lahore, Pakistan · ${esc(content.contact.email)} · github.com/zaraahmed · linkedin.com/in/zaraahmed</p>
+    <p class="rs-contactline">Lahore, Pakistan · ${esc(content.contact.email)} · github.com/fatimamohsin · linkedin.com/in/fatimamohsin</p>
   </header>
   <p class="rs-summary">${esc(r.summary)}</p>
 
